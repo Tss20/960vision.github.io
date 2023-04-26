@@ -1,0 +1,136 @@
+.instructionPage{
+    text-align: center;
+    font-family: Arial;
+    margin-top: 100px;
+    /* top: 50%; */
+
+    /* vertical-align: middle; */
+    /* align-items: center; */
+}
+
+.baseInstructions{
+    text-align: center;
+    font-family: Arial;
+    margin-top: 100px;
+    display: none;
+}
+
+.focalInstructions{
+    text-align: center;
+    font-family: Arial;
+    margin-top: 100px;
+    display: none;
+}
+
+.end{
+    text-align: center;
+    font-family: Arial;
+    margin-top: 100px;
+    display: none;
+}
+
+
+.button1 {
+    border: black;
+    color: black;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+  
+  /* .button1 {
+    background-color: white;
+    color: black;
+    border: 2px solid #4CAF50;
+  } */
+  
+  .button1:hover {
+    background-color: #646564;
+    color: white;
+  }
+
+
+
+  .button2 {
+    border: black;
+    color: black;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+  
+  /* .button1 {
+    background-color: white;
+    color: black;
+    border: 2px solid #4CAF50;
+  } */
+  
+  .button2:hover {
+    background-color: #646564;
+    color: white;
+  }
+
+  .experiment1{
+    text-align: center;
+    font-family: Arial;
+    margin-top: 100px;
+    /* align-items: center;
+    align-content: center; */
+    display: none;
+  }
+
+
+  .experiment2{
+    text-align: center;
+    font-family: Arial;
+    margin-top: 100px;
+    /* align-items: center;
+    align-content: center; */
+    display: none;
+  }
+
+#square{
+    height: 400px;
+    width: 400px;
+    position: relative;
+
+}
+ #testImg{
+    height: 400px;
+    width: auto;
+
+  }
+
+/* .square#testImg2{
+    height: 400px;
+    width: auto;
+} */
+
+
+   #testImg2{
+    
+    height: 400px;
+    width: auto;
+    top: 50%;
+    left: 50%;
+  } 
+
+#plusStim{
+    position: absolute;
+    top:46.5%;
+    left:46.5%;
+    /* top: calc(50%+50px);
+    left: calc(50%+50px); */
+    height: 100px;
+    width: 100px;
+}

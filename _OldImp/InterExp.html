@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+
+<style>
+    .left-stimulus {
+      object-position: bottom 1200px right 4000px;
+    }
+    .flanker-stimulus #prompt {
+      font-size: 18px;
+    }
+    .fixation {
+      font-size: 80px;
+    }
+  </style>
+
+<head>
+    <title>Intermediate</title>
+    <meta http-equiv="pragma" content="no-cache">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <link href="https://unpkg.com/jspsych@7.3.1/css/jspsych.css" rel="stylesheet" type="text/css" />
+    <script src="https://unpkg.com/jspsych@7.3.1"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.2"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.2"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.2"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.2"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-image-button-response@1.1.2"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-categorize-image@1.1.2"></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'></script>
+    <script src="util.js"></script>
+</head>
+
+<body></body>
+
+<script>
+    // Initialize the jsPsych object (possibly with arguments: https://www.jspsych.org/7.3/reference/jspsych/)
+    var jsPsych = initJsPsych({
+        on_finish: function () {
+            jsPsych.data.displayData(); // Print data to screen at the end
+            write_data_to_server(); // This function is defined in `util.js`
+        },
+        show_progress_bar: true,
+    });
+
+    // The `write_data_to_server` function requires two global variables to be defined:
+    // `url_write_data_php` (web location of the write_data.php script) and `output_filename`
+    var url_experiment_dir = 'https://msaddler.scripts.mit.edu/jspsych_tutorial_960/';
+    var url_write_data_php = url_experiment_dir + 'write_data.php';
+    var subject_id = jsPsych.randomization.randomID(10);
+    var output_filename = `data/experiment2_${subject_id}.json`;
+    console.log(`Data will be saved to: ${url_experiment_dir + output_filename}`);
+
+    // Initialize a timeline (just an empty array)
+    var timeline = [];
+
+    var category_dict = {
+        'Fish': ['n01440764_12435', 'n01443537_18160', 'n02514041_3032', 'n02536864_33865',],
+        'Bird': ['n01531178_13382', 'n01537544_23365', 'n01558993_3523', 'n01582220_6409'],
+        'Lizard': ['n01682714_3665', 'n01682714_5209', 'n01685808_5907', 'n01687978_11261'],
+        'Snake': ['n01728572_8381', 'n01728920_1558', 'n01728920_3094', 'n01728920_18940'],
+        'Insect': ['n01770081_20238', 'n02165105_1003', 'n02165456_4723', 'n02172182_10420'], 
+        'Dog': ['n02085936_25190', 'n02086646_5634', 'n02087394_12262', 'n02089867_1499'],
+        'Cat': ['n02123045_909', 'n02123394_4665', 'n02124075_8519', 'n04265275_11650'],
+        'Bear': ['n02132136_1163', 'n02132136_1914', 'n02133161_5643', 'n02133161_15593'],
+        'Pig': ['n02395406_20997', 'n02395406_27800', 'n02395406_34373', 'n02395406_126722'],
+        'Cow': ['n02403003_5033', 'n02403003_5517', 'n02403003_8205', 'n02403003_13048'],
+        'Monkey': ['n02480495_18162', 'n02481823_750', 'n02486261_5082', 'n02492035_2600'],
+        'Person': ['n02667093_4473', 'n02669723_7201', 'n02787622_18405', 'n02797295_12668'],
+        'Water': ['n02894605_21552', 'n02894605_26560', 'n02894605_49114', 'n03443371_12508'],
+        'Rock': ['n03743016_6906', 'n03743016_7422', 'n03743016_14906', 'n03743016_17788'],
+        'Plant': ['n03899768_131602', 'n04204347_2608', 'n04522168_34974', 'no03733281_18757'],
+    }
+
+    var picture_dict = {
+        'n01440764_12435': 'Fish', 'n01443537_18160': 'Fish', 'n02514041_3032': 'Fish', 'n02536864_33865': 'Fish',
+        'n01531178_13382': 'Bird', 'n01537544_23365': 'Bird', 'n01558993_3523': 'Bird', 'n01582220_6409': 'Bird',
+        'n01682714_3665': 'Lizard', 'n01682714_5209': 'Lizard', 'n01685808_5907': 'Lizard', 'n01687978_11261': 'Lizard',
+        'n01728572_8381': 'Snake', 'n01728920_1558': 'Snake', 'n01728920_3094': 'Snake', 'n01728920_18940': 'Snake',
+        'n01770081_20238': 'Insect', 'n02165105_1003': 'Insect', 'n02165456_4723': 'Insect', 'n02172182_10420': 'Insect',
+        'n02085936_25190': 'Dog', 'n02086646_5634': 'Dog', 'n02087394_12262': 'Dog', 'n02089867_1499': 'Dog',
+        'n02123045_909': 'Cat', 'n02123394_4665': 'Cat', 'n02124075_8519': 'Cat', 'n04265275_11650': 'Cat',
+        'n02132136_1163': 'Bear', 'n02132136_1914': 'Bear', 'n02133161_5643': 'Bear', 'n02133161_15593': 'Bear',
+        'n02395406_20997': 'Pig', 'n02395406_27800': 'Pig', 'n02395406_34373': 'Pig', 'n02395406_126722': 'Pig',
+        'n02403003_5033': 'Cow', 'n02403003_5517': 'Cow', 'n02403003_8205': 'Cow', 'n02403003_13048': 'Cow',
+        'n02480495_18162': 'Monkey', 'n02481823_750': 'Monkey', 'n02486261_5082': 'Monkey', 'n02492035_2600': 'Monkey',
+        'n02667093_4473': 'Person', 'n02669723_7201': 'Person', 'n02787622_18405': 'Person', 'n02797295_12668': 'Person',
+        'n02894605_21552': 'Water', 'n02894605_26560': 'Water', 'n02894605_49114': 'Water', 'n03443371_12508': 'Water',
+        'n03743016_6906': 'Rock', 'n03743016_7422': 'Rock', 'n03743016_14906': 'Rock', 'n03743016_17788': 'Rock',
+        'n03899768_131602': 'Plant', 'n04204347_2608': 'Plant', 'n04522168_34974': 'Plant', 'no03733281_18757': 'Plant',
+    }
+
+    var center_radius_dict = {
+        'n01440764_12435': [(180, 250),75], 'n01443537_18160': [(250, 100),75], 'n02514041_3032': [(200, 150),75], 'n02536864_33865': [(280, 120),75],
+        'n01531178_13382': [(110, 300),75], 'n01537544_23365': [(230, 130),75], 'n01558993_3523': [(200, 100),75], 'n01582220_6409': [(220, 75),75],
+        'n01682714_3665': [(150, 170),75], 'n01682714_5209': [(280, 160),75], 'n01685808_5907': [(200, 200),75], 'n01687978_11261': [(100, 200),75],
+        'n01728572_8381': [(210, 50),37], 'n01728920_1558': [(200, 170),75], 'n01728920_3094': [(180, 170),75], 'n01728920_18940': [(450, 170),75],
+        'n01770081_20238': [(230, 200),75], 'n02165105_1003': [(200, 170),75], 'n02165456_4723': [(200, 200),75], 'n02172182_10420': [(210, 100),75],
+        'n02085936_25190': [(190, 100),75], 'n02086646_5634': [(290, 200),75], 'n02087394_12262': [(300, 100),75], 'n02089867_1499': [(125, 120),37],
+        'n02123045_909': [(225, 150),75], 'n02123394_4665': [(120, 250),75], 'n02124075_8519': [(240, 200),75], 'n04265275_11650': [(130, 210),75],
+        'n02132136_1163': [(200, 370),110], 'n02132136_1914': [(210, 100),75], 'n02133161_5643': [(200, 150),75], 'n02133161_15593': [(200, 150),75],
+        'n02395406_20997': [(175, 70),37], 'n02395406_27800': [(225, 100),75], 'n02395406_34373': [(230, 170),75], 'n02395406_126722': [(280, 240),75],
+        'n02403003_5033': [(250, 120),75], 'n02403003_5517': [(230, 200),75], 'n02403003_8205': [(100, 100),37], 'n02403003_13048': [(110, 80),37],
+        'n02480495_18162': [(280, 150),75], 'n02481823_750': [(260, 150),75], 'n02486261_5082': [(150, 70),37], 'n02492035_2600': [(350, 120),75],
+        'n02667093_4473': [(200, 80),75], 'n02669723_7201': [(900, 400),200], 'n02787622_18405': [(200, 80),75], 'n02797295_12668': [(85, 125),37],
+        'n02894605_21552': [(100, 200),75], 'n02894605_26560': [(300, 150),75], 'n02894605_49114': [(250, 200),75], 'n03443371_12508': [(120, 150),75],
+        'n03743016_6906': [(340, 85),75], 'n03743016_7422': [(410, 300),75], 'n03743016_14906': [(120, 180),75], 'n03743016_17788': [(240, 180),75],
+        'n03899768_131602': [(150, 200),75], 'n04204347_2608': [(200, 250),75], 'n04522168_34974': [(225, 120),75], 'no03733281_18757': [(750, 800),200],
+    }
+
+    // Add some trial objects to the timeline (like appending dictionaries to a Python list)
+    var first_page = {
+        type: jsPsychHtmlButtonResponse, // This trial will use the "html-button-response" plugin
+        stimulus: [
+            '<h2>Focal Based Image Classification Experiment</h2>' +
+            '<p>In this experiment, you will briefly see some images. </p>' +
+            '<p>Before some images you will see a cross. Please direct your attention to it. </p>' +
+            '<p>Your task is to report the category of the image you saw.</p>' + 
+            '<p>Categories presented will be Fish, Bird, Lizard, Snake, Insect, Dog, Cat, Bear, Pig, Cow, Monkey, Person, Water, Rock, and Plant.</p>' +
+            '<p>If you believe you did not see any of these categories, you can click None.</p>'
+        ],
+        choices: ['Begin experiment'],
+    };
+    timeline.push(first_page);
+
+    // Define some variables that will be shared across all image trials
+    var prompt_str = 'What did you see?';
+    var choices = ['Fish', 'Bird', 'Lizard', 'Snake', 'Insect', 'Dog', 'Cat', 'Bear', 'Pig', 'Cow', 'Monkey', 'Person', 'Water', 'Rock', 'Plant', 'None'];
+    var maintain_aspect_ratio = true;
+    var stimulus_width = 300; // Image width in pixels (null will use native width)
+    var stimulus_duration = 150; // Image presentation duration in ms
+
+
+    var inter_page_0 ={
+        type: jsPsychHtmlButtonResponse, // This trial will use the "html-button-response" plugin
+        stimulus: [
+            '<h2>Base Testing</h2>' +
+            '<p>For the following trials, you will briefly see an image.</p>'+
+            '<p>The images will be centered on your screen.</p>'
+        ],
+        choices: ['Continue'],
+    }
+    var inter_page_1 = {
+        type: jsPsychHtmlButtonResponse, // This trial will use the "html-button-response" plugin
+        stimulus: [
+            '<h2>Focal Testing</h2>' +
+            '<p>For the following trials, you will see a cross between each image.</p>'+
+            '<p>Please direct your attention to each cross.</p>'
+        ],
+        choices: ['Continue'],
+    };
+
+    inter_order = pickWOReplace([0,1], 2) //0 being for base trial and 1 being for focal trials
+    // timeline.push(inter_page);
+
+
+    // Making trials one-at-a-time makes for very long and inflexible code
+    // var trial_0 = {
+    //     type: jsPsychImageButtonResponse, // This trial will use the "image-button-response" plugin
+    //     stimulus: 'images/condition0/40.png',
+    //     maintain_aspect_ratio: maintain_aspect_ratio,
+    //     stimulus_width: stimulus_width,
+    //     stimulus_duration: stimulus_duration,
+    //     prompt: prompt_str,
+    //     choices: choices,
+    // };
+    // timeline.push(trial_0);
+
+    
+    //Plan to make function that returns list of img paths for each category to use for each trial (splitting in half) Try to call only once
+    //Generate random numbs in range [0,3] twice for all 15 categories (30 random nums) First 2 --> normal Second 2 --> blurred
+    // ex return: {'Fish': ['fish1', 'fish3'], ['fish2', 'fish0'], ?? make it one whole reordered dict?
+
+    function reorderImgs(){
+        new_dict = {}
+        keys = Object.keys(category_dict)
+        for (var i=0; i<15; i++) {
+            new_list = [];
+            category = keys[i];
+            old_list = category_dict[category];
+            randOrder = [];
+            new_dict[category] = pickWOReplace(old_list, 4);
+            }
+        return new_dict;
+        }
+
+
+    function pickWOReplace(to_pick_list, k){
+        randOrder = [];
+        j=0;
+        while(k--){
+            j = Math.floor(Math.random() * (k+1) + 0);
+            randOrder.push([to_pick_list[j]]);
+            to_pick_list.splice(j,1)
+        }
+        return randOrder;
+    }
+
+    // category_order = pickWOReplace(Object.keys(category_dict), 15);
+    // category_order2 = pickWOReplace(Object.keys(category_dict), 15);
+
+    new_category_dict = reorderImgs();
+    
+    /*
+    Nested timelines (timelines within timelins) can efficiently make blocks of trials.
+    To make a nested timeline, we simply define a new timeline that we want to repeat
+    and a list of variables.
+    Here, `timeline_variables_for_trials` is just a list of dictionaries defining the
+    variables to be used on each trial (here we have 9 trials with 9 different images).
+    */ 
+//    key_answer: picture_dict[category_dict[category_order[1]][0]]
+    var timeline_variables_for_trials = [
+        // { image_path: `Imgs/${new_category_dict[category_order[1]][0][0]}.jpg`, key_answer: picture_dict[new_category_dict[category_order[1]][0][0]] },
+        // { image_path: `Imgs/${new_category_dict[category_order[2]][0][0]}.jpg`, key_answer: picture_dict[new_category_dict[category_order[2]][0][0]] },
+        // { image_path: `Imgs/${new_category_dict[category_order[3]][0][0]}.jpg`, key_answer: picture_dict[new_category_dict[category_order[3]][0][0]] },
+        // { image_path: `Imgs/${new_category_dict[category_order[4]][0][0]}.jpg`, key_answer: picture_dict[new_category_dict[category_order[4]][0][0]] },
+        // { image_path: `Imgs/${new_category_dict[category_order[5]][0][0]}.jpg`, key_answer: picture_dict[new_category_dict[category_order[5]][0][0]] },
+        // { image_path: `Imgs/${new_category_dict[category_order[6]][0][0]}.jpg`, key_answer: picture_dict[new_category_dict[category_order[6]][0][0]] },
+        // { image_path: `Imgs/${new_category_dict[category_order[7]][0][0]}.jpg`, key_answer: picture_dict[new_category_dict[category_order[7]][0][0]] },
+        // { image_path: `Imgs/${new_category_dict[category_order[8]][0][0]}.jpg`, key_answer: picture_dict[new_category_dict[category_order[8]][0][0]] },
+        // { image_path: `Imgs/${new_category_dict[category_order[9]][0][0]}.jpg`, key_answer: picture_dict[new_category_dict[category_order[9]][0][0]] },
+        // { image_path: `Imgs/${new_category_dict[category_order[10]][0][0]}.jpg`, key_answer: picture_dict[new_category_dict[category_order[10]][0][0]] },
+    ]; 
+    
+    //Create new one of the trials above but for the blurry trials and the plus sign appears in between (maybe need to use individuals)
+
+    categories = Object.keys(category_dict)
+    for (i=0; i<2; i++){
+        for (var categ = 0; categ < 15; categ++){
+            img_path = `Imgs/${new_category_dict[categories[categ]][i][0]}.jpg`;
+            key_ans = picture_dict[new_category_dict[categories[categ]][i][0]];
+            timeline_variables_for_trials.push({
+                        image_path: img_path,
+                        stimulus: '<img style="object-position: bottom 120px right 400px;"></img>',
+                        stimulus_duration: 150,
+                        key_answer: key_ans,
+                        startX: 3200,
+                        startY: 0,
+                        origin_center: false,
+                        // css_classes: ['left-stimilus'],
+                        
+                    });
+        }
+    }
+    //Second round of unblurred imgs
+    
+
+    /*
+    Next, we define a timeline for a single trial that will be repeated once for each
+    element in the list above. Here, `timeline_for_trials` has just one plugin and makes
+    references to images in the list above using the `jsPsych.timelineVariable` function.
+    */ //'<img>style="position:absolute; left:284.5px; top: 270px"</img>'+
+    var timeline_for_trials = [
+        {
+            type: jsPsychImageButtonResponse, // Each trial will use the "image-button-response" plugin
+            stimulus:jsPsych.timelineVariable('image_path'),
+        //     stimulus: function() {
+        // var stim = '<img style="object-position: bottom 120px right 400px;">'+jsPsych.timelineVariable('image_path')+'</img>';
+        // return stim;},
+            // stimulus: '<img style="object-position: bottom 1200px right 4000px;">'+jsPsych.timelineVariable('image_path')+'',
+            
+            maintain_aspect_ratio: maintain_aspect_ratio,
+            stimulus_width: stimulus_width,
+            stimulus_duration: stimulus_duration,
+            prompt: prompt_str,
+            choices: choices,
+            
+        },
+    ];
+    /*
+    To add these repeated trials to our main timeline, we simply make an object that
+    has `timeline` and `timeline_variables` defined and push it to our main timeline.
+    Conveniently, you can also specify fields like `randomize_order`, so participants
+    do not all see the trials in the same order.
+    */
+    var trials = {
+        timeline: timeline_for_trials,
+        timeline_variables: timeline_variables_for_trials,
+        randomize_order: true,
+    };
+    timeline.push(trials);
+
+
+
+//     function readTextFile(filePath){
+//     var rawFile = new XMLHttpRequest();
+//     rawFile.open("GET", filePath , true);
+//     rawFile.send(null);
+
+//     rawFile.onreadystatechange = function (){
+//         if(rawFile.readyState === 4){
+//             if(rawFile.status === 200 || rawFile.status == 0){
+//                 var allText = rawFile.responseText;
+//                 console.log(typeOf(allText));
+//                 // console.log(allText);
+//             }
+//         }
+//     }     
+// }
+
+    var timeline_variables_for_trials_1 = []
+    for (i=0; i<2; i++){
+        for (var categ = 0; categ < 15; categ++){
+            img_num = new_category_dict[categories[categ]][i][0];
+            img_path = `ImgsB/${img_num}_1.jpg`;
+            text_path = `ImgsB/${img_num}_1.txt`;
+            focal_point = center_radius_dict[img_num];
+
+            
+            
+            // var fs = require("fs");
+            // fs.readFile("./mytext.txt", function(text){
+            // var textByLine = text.split("\n")
+            // });
+            // textByLine = FileReader.readAsText(text_path)
+
+
+            // console.Log(textByLine)
+
+            // new_text = readTextFile(text_path)
+            // arr = new_text.split("\n")
+
+            // console.log("TEXT", new_text, String(new_text))
+
+            key_ans = picture_dict[img_num];
+            timeline_variables_for_trials_1.push({
+                        image_path: img_path,
+                        stimulus_duration: 150,
+                        key_answer: key_ans,
+                    });
+        }
+    }
+
+
+
+    var last_page = {
+        type: jsPsychHtmlButtonResponse, // This trial will use the "html-button-response" plugin
+        stimulus: [
+            '<h2>Press the button below to end experiment.</h2>' +
+            '<p>Thank you for participating!</p>'
+        ],
+        choices: ['End experiment'],
+    };
+    timeline.push(last_page);
+
+    // Run the timeline
+    jsPsych.run(timeline);
+</script>
+
+</html>

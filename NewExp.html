@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>NewHumanVisualFocus</title>
+    <meta http-equiv="pragma" content="no-cache">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <link rel="stylesheet" href="NewExp.css">
+    
+</head>
+
+
+<body>
+    <div class="instructionPage">
+        <h2>Focal Based Image Classification Experiment</h2>
+        <p>In this experiment, you will briefly see some images. </p>
+        <p>Before some images you will see a cross. Please direct your attention to it. </p>
+        <p>If you do not see a cross, direct your attention anywhere on your screen; images will appear in the center for these trials.</p>
+        <p>Your task is to report the category of the image you saw.</p>
+        <!-- <p>Categories presented will be Fish, Bird, Lizard, Snake, Insect, Dog, Cat, Bear, Pig, Cow, Monkey, Person, Water, Rock, and Plant.</p> -->
+        <p>Categories presented will be Bear, Bird, Cat, Cow, Dog, Fish, Insect, Lizard, Monkey, Person, Pig, Plant, and Snake.</p>
+        <!-- <p>If you believe you did not see any of these categories, you can click None.</p> -->
+        <p>Please wait for images to appear and do not spam click.</p>
+        <button class="button1"; id="b01"; onClick ="showInter(this, 'baseInstructions')">Continue</button>
+    </div>
+
+    <div class="baseInstructions">
+        <h2>Base Testing</h2>
+        <p>For the following trials, you will briefly see an image.</p>
+        <p>The images will be centered on your screen.</p>
+        <p>Please choose one category as best as you can.</p>
+        <p>Please wait for images to appear and do not spam click.</p>
+        <button class="button1"; id="b02"; onClick ="clearPage(this, showImgs)">Continue</button>
+    </div>
+
+    <div class="experiment1">
+        <img id="testImg"; src="Imgs\n02480495_12334.jpg"> 
+        <br>
+        <button class="button1"; id="b1"; onClick ="clearPage(this, showImgs)">Bear</button>
+        <button class="button1"; id="b2"; onClick ="clearPage(this, showImgs)">Bird</button>
+        <button class="button1"; id="b3"; onClick ="clearPage(this, showImgs)">Cat</button>
+        <button class="button1"; id="b4"; onClick ="clearPage(this, showImgs)">Cow</button>
+        <button class="button1"; id="b5"; onClick ="clearPage(this, showImgs)">Dog</button>
+        <button class="button1"; id="b6"; onClick ="clearPage(this, showImgs)">Fish</button>
+        <button class="button1"; id="b7"; onClick ="clearPage(this, showImgs)">Insect</button>
+        <button class="button1"; id="b8"; onClick ="clearPage(this, showImgs)">Lizard</button>
+        <button class="button1"; id="b9"; onClick ="clearPage(this, showImgs)">Monkey</button>
+        <button class="button1"; id="b10"; onClick ="clearPage(this, showImgs)">Person</button>
+        <button class="button1"; id="b11"; onClick ="clearPage(this, showImgs)">Pig</button>
+        <button class="button1"; id="b12"; onClick ="clearPage(this, showImgs)">Plant</button>
+        <!-- <button class="button1"; id="b13"; onClick ="clearPage(this, showImgs)">Rock</button> -->
+        <button class="button1"; id="b14"; onClick ="clearPage(this, showImgs)">Snake</button>
+        <!-- <button class="button1"; id="b15"; onClick ="clearPage(this, showImgs)">Water</button> -->
+        <!-- <button class="button1"; id="b16"; onClick ="clearPage(this, showImgs)">None</button>   -->
+    </div>
+
+    <div class="focalInstructions">
+        <h2>Focal Testing</h2>
+        <p>For the following trials, you will see a cross before seeing each image.</p>
+        <p>Please direct your attention to each cross you see.</p>
+        <p>Material in these trials will be placed towards the left of your screen.</p>
+        <p>Please choose one category as best as you can.</p>
+        <p>Please wait for images to appear and do not spam click.</p>
+        <button class="button2"; id="b03"; onClick ="hideInter(this, showImgs)">Continue</button> 
+    </div>
+
+    <div class="experiment2">
+        <div id="square">
+            <img id="plusStim"; src="plus_sign.png">
+            <img id="testImg2"; src="plus_sign.png">
+        </div>
+        
+        <br>
+        <button class="button1"; id="b1"; onClick ="clearPage(this, showImgs)">Bear</button>
+        <button class="button1"; id="b2"; onClick ="clearPage(this, showImgs)">Bird</button>
+        <button class="button1"; id="b3"; onClick ="clearPage(this, showImgs)">Cat</button>
+        <button class="button1"; id="b4"; onClick ="clearPage(this, showImgs)">Cow</button>
+        <button class="button1"; id="b5"; onClick ="clearPage(this, showImgs)">Dog</button>
+        <button class="button1"; id="b6"; onClick ="clearPage(this, showImgs)">Fish</button>
+        <button class="button1"; id="b7"; onClick ="clearPage(this, showImgs)">Insect</button>
+        <button class="button1"; id="b8"; onClick ="clearPage(this, showImgs)">Lizard</button>
+        <button class="button1"; id="b9"; onClick ="clearPage(this, showImgs)">Monkey</button>
+        <button class="button1"; id="b10"; onClick ="clearPage(this, showImgs)">Person</button>
+        <button class="button1"; id="b11"; onClick ="clearPage(this, showImgs)">Pig</button>
+        <button class="button1"; id="b12"; onClick ="clearPage(this, showImgs)">Plant</button>
+        <!-- <button class="button1"; id="b13"; onClick ="clearPage(this, showImgs)">Rock</button> -->
+        <button class="button1"; id="b14"; onClick ="clearPage(this, showImgs)">Snake</button>
+        <!-- <button class="button1"; id="b15"; onClick ="clearPage(this, showImgs)">Water</button> -->
+        <!-- <button class="button1"; id="b16"; onClick ="clearPage(this, showImgs)">None</button>   -->
+    </div>
+
+    <div class="end">
+        <h2>End</h2>
+        <p>Thank you for participating in our 9.60 experiment!</p>
+        <p>Jessica Boye-Doe and Tara Sarma.</p>
+        <!-- <button class="button2"; id="b03"; onClick ="hideInter(this, showImgs)">Continue</button>  -->
+    </div>
+
+</body>
+
+<script>
+
+img_on = 0; //Is increased throughout the code to control which img we are on
+answers_dict = {}; //Where participants answers are kept
+
+//For showing a set of mroe specific instructions after the experiment intro
+function showInter(oldItem, newClassName){
+    oldItem.parentNode.style.display = "none";
+    obj = document.getElementsByClassName(newClassName)[0];
+    obj.style.display = "block";
+}
+
+//For moving on from the between trials
+function clearPage(obj, next_func){
+    elem = obj.parentNode;
+    elem.style.display = "none";
+    next_func(obj);
+}
+
+//For moving on from the instructions to the focal task 
+function hideInter(obj, next_func){
+    elem1 = obj.parentNode;
+    elem1.style.display = "none";
+    img_on+=1;
+    next_func(obj);
+}
+
+
+//Logisitics of which task to do on what subset of images+adds participant answers to dictionary
+function showImgs(bPressed){
+    //Base task images
+    if(img_on<27){
+        if(img_on-1>-1){
+            img_seen = img_order[img_on-1];
+            answers_dict[img_on-1] = [img_seen, picture_dict[img_seen], bPressed.textContent]; //answers given in the order image tag, real category, chosen category
+        }
+        // console.log(answers_dict);
+
+        exp1 = document.getElementsByClassName("experiment1")[0];
+        exp1.style.display = "block";
+
+        //1 second buffer between click of button and seeing next image
+        setTimeout(showImgs1, 1000);
+    }
+
+    //Transition to instructions for the nect task
+    if(img_on==27){
+        //Img_seen is blueNone and is still recorded as buffer to make sure all images are accounted for
+        img_seen = img_order[img_on-1]
+        answers_dict[img_on-1] = [img_seen, picture_dict[img_seen], bPressed.textContent];
+        // console.log(answers_dict);
+
+        obj = document.getElementsByClassName('focalInstructions')[0];
+        obj.style.display = "block";
+    }
+
+    //Focal Task images
+    if(img_on >27 && img_on<54){
+        img_seen = img_order[img_on-1]
+        answers_dict[img_on-1] = [img_seen, picture_dict[img_seen], bPressed.textContent];
+        // console.log(answers_dict);
+
+        showImgs2();
+    }
+
+    //End of experiment 
+    if (img_on == 54){
+        //Records last button pressed for last image 
+        img_seen = img_order[img_on-1]
+        answers_dict[img_on-1] = [img_seen, picture_dict[img_seen], bPressed.textContent];
+        console.log(answers_dict);
+
+        obj = document.getElementsByClassName('end')[0];
+        obj.style.display = "block";
+    }
+}
+
+//Displays images of the base task by changing their visibility
+function showImgs1(){
+    imageSource = `Imgs/${img_order[img_on]}.jpg`;
+        
+    // exp1 = document.getElementsByClassName("experiment1")[0];
+    // exp1.style.display = "block";
+
+    img1 = document.getElementById("testImg");
+    img1.style.display = "inline";
+    img1.style.visibility = "visible";
+    img1.src = imageSource;
+    setTimeout(hideCurImg, 150); //Imgs only appear for 150 ms
+
+    // console.log("imgs: ", imageSource);
+}
+
+//Displays images of the focal task by changing their visibility as well as the visibility of the cross
+function showImgs2(){
+    imageSource = `Imgs/${img_order[img_on]}.jpg`;
+    plus_pos = center_radius_dict[img_order[img_on]];
+
+    //Img and cross in square div to make their coordinate planes the same
+    wholeSquare = document.getElementById("square");
+    square.style.visibility= "visible";
+
+    plusElem = document.getElementById("plusStim"); //cross between imgs
+    
+    img2 = document.getElementById("testImg2");
+    img2.src = imageSource;
+    
+    // bound = elem5.getBoundingClientRect();
+    // plusElem.style.top = 'calc(plusElem.style.top+(plus_pos[1]+"px"))';
+    // plusElem.style.left = 'calc(plusElem.style.left+(plus_pos[0]+"px"))';
+
+    // plusElem.style.top += plus_pos[0];
+    // plusElem.style.left += plus_pos[1];
+
+    // plusElem.style.top = (bound['top']+plus_pos[0])+"px";
+    // plusElem.style.left = (bound['left']+plus_pos[1])+"px";
+
+    // plusElem.style.top = 'calc((plus_pos[1])+"%"+(bound["top"])+"px")';
+    // plusElem.style.left = 'calc((plus_pos[0])+"%"+(bound["left"])+"px")';
+
+
+    //Above and below being attempts to center the cross
+    //Can be returned to if the current centering does not work on all devices
+    plusElem.style.top = (plus_pos[1]-50)+"px";
+    plusElem.style.left = (plus_pos[0]-50)+"px";
+    
+    plusElem.style.display = "block";
+    plusElem.style.visibility = "visible";
+    
+
+    img2.style.visibility = "hidden";
+
+    //cross appears for 3 seconds before the img is shown
+    setTimeout(removePlus, 3000);
+    
+    exp2 = document.getElementsByClassName("experiment2")[0]
+    exp2.style.display = "block";
+
+    // console.log("imgs: ", imageSource);
+}
+
+//Make imgs from base task disappear
+function hideCurImg(){
+    curImg = document.getElementById("testImg");
+    curImg.style.visibility = "hidden";
+
+    img_on += 1;
+    imageSource = `Imgs/${img_order[img_on]}.jpg`;
+    curImg.src = imageSource;
+}
+
+//Make imgs from focal task disappear (after the cross has)
+function hideCurImg2(){
+    curImg2 = document.getElementById("testImg2");
+    curImg2.style.visibility = "hidden";
+
+    img_on += 1;
+}
+
+//Make cross disappear
+function removePlus(){
+    
+    plusElem = document.getElementById("plusStim");
+    plusElem.style.visibility = "hidden";
+
+
+    img2 = document.getElementById("testImg2");
+    img2.style.display = "inline";
+    img2.style.visibility = "visible";
+
+
+    setTimeout(hideCurImg2, 150); //Imgs for focal task only appear for 150 ms
+    
+}
+
+//Used initially to pick the order of the images which is now fixed
+// function pickWOReplace(to_pick_list, k){
+//         randOrder = [];
+//         j=0;
+//         while(k--){
+//             j = Math.floor(Math.random() * (k+1) + 0);
+
+//             randOrder.push(to_pick_list[j]);
+//             to_pick_list.splice(j,1)
+//         }
+//         return randOrder;
+//     }
+
+
+//Specifies which imgs belong to each category
+var category_dict = {
+    'Fish': ['n01440764_12435', 'n01443537_18160', 'n02514041_3032', 'n02536864_33865',],
+    'Bird': ['n01531178_13382', 'n01537544_23365', 'n01558993_3523', 'n01582220_6409'],
+    'Lizard': ['n01682714_3665', 'n01682714_5209', 'n01685808_5907', 'n01687978_11261'],
+    'Snake': ['n01728572_8381', 'n01728920_1558', 'n01728920_3094', 'n01728920_18940'],
+    'Insect': ['n01770081_20238', 'n02165105_1003', 'n02165456_4723', 'n02172182_10420'], 
+    'Dog': ['n02085936_25190', 'n02086646_5634', 'n02087394_12262', 'n02089867_1499'],
+    'Cat': ['n02123045_909', 'n02123394_4665', 'n02124075_8519', 'n04265275_11650'],
+    'Bear': ['n02132136_1163', 'n02132136_1914', 'n02133161_5643', 'n02133161_15593'],
+    'Pig': ['n02395406_20997', 'n02395406_27800', 'n02395406_34373', 'n02395406_126722'],
+    'Cow': ['n02403003_5033', 'n02403003_5517', 'n02403003_8205', 'n02403003_13048'],
+    'Monkey': ['n02480495_18162', 'n02481823_750', 'n02486261_5082', 'n02492035_2600'],
+    'Person': ['n02667093_4473', 'n02669723_7201', 'n02787622_18405', 'n02797295_12668'],
+    'Water': ['n02894605_21552', 'n02894605_26560', 'n02894605_49114', 'n03443371_12508'],
+    'Rock': ['n03743016_6906', 'n03743016_7422', 'n03743016_14906', 'n03743016_17788'],
+    'Plant': ['n03899768_131602', 'n04204347_2608', 'n04522168_34974', 'no03733281_18757'],
+    'None': ['blueNone']
+}
+
+//Specifies the category of each image specifically. The 'reverse' of category_dict
+var picture_dict = {
+    'n01440764_12435': 'Fish', 'n01443537_18160': 'Fish', 'n02514041_3032': 'Fish', 'n02536864_33865': 'Fish',
+    'n01531178_13382': 'Bird', 'n01537544_23365': 'Bird', 'n01558993_3523': 'Bird', 'n01582220_6409': 'Bird',
+    'n01682714_3665': 'Lizard', 'n01682714_5209': 'Lizard', 'n01685808_5907': 'Lizard', 'n01687978_11261': 'Lizard',
+    'n01728572_8381': 'Snake', 'n01728920_1558': 'Snake', 'n01728920_3094': 'Snake', 'n01728920_18940': 'Snake',
+    'n01770081_20238': 'Insect', 'n02165105_1003': 'Insect', 'n02165456_4723': 'Insect', 'n02172182_10420': 'Insect',
+    'n02085936_25190': 'Dog', 'n02086646_5634': 'Dog', 'n02087394_12262': 'Dog', 'n02089867_1499': 'Dog',
+    'n02123045_909': 'Cat', 'n02123394_4665': 'Cat', 'n02124075_8519': 'Cat', 'n04265275_11650': 'Cat',
+    'n02132136_1163': 'Bear', 'n02132136_1914': 'Bear', 'n02133161_5643': 'Bear', 'n02133161_15593': 'Bear',
+    'n02395406_20997': 'Pig', 'n02395406_27800': 'Pig', 'n02395406_34373': 'Pig', 'n02395406_126722': 'Pig',
+    'n02403003_5033': 'Cow', 'n02403003_5517': 'Cow', 'n02403003_8205': 'Cow', 'n02403003_13048': 'Cow',
+    'n02480495_18162': 'Monkey', 'n02481823_750': 'Monkey', 'n02486261_5082': 'Monkey', 'n02492035_2600': 'Monkey',
+    'n02667093_4473': 'Person', 'n02669723_7201': 'Person', 'n02787622_18405': 'Person', 'n02797295_12668': 'Person',
+    'n02894605_21552': 'Water', 'n02894605_26560': 'Water', 'n02894605_49114': 'Water', 'n03443371_12508': 'Water',
+    'n03743016_6906': 'Rock', 'n03743016_7422': 'Rock', 'n03743016_14906': 'Rock', 'n03743016_17788': 'Rock',
+    'n03899768_131602': 'Plant', 'n04204347_2608': 'Plant', 'n04522168_34974': 'Plant', 'no03733281_18757': 'Plant',
+    'blueNone': 'None', 'n02086646_5883': 'InitDog', 'n01443537_22915': 'InitFish', 'n02480495_12334': 'InitMonkey'
+}
+
+//Specifies the center of each blurred img so that the cross can be centered there. Pixels arranged in order (left, top)
+//Last element in each list is the radius of the unblurred part of the img (wasn't used in this implemenation)
+var center_radius_dict = { 
+    'n01440764_12435': [180, 250 ,75], 'n01443537_18160': [250, 100,75], 'n02514041_3032': [240, 190,75], 'n02536864_33865': [330, 150,75],
+    'n01531178_13382': [140, 250,75], 'n01537544_23365': [230, 130,75], 'n01558993_3523': [200, 100,75], 'n01582220_6409': [260, 90,75],
+    'n01682714_3665': [170, 140,75], 'n01682714_5209': [280, 160,75], 'n01685808_5907': [110, 120,75], 'n01687978_11261': [100, 200,75],
+    'n01728572_8381': [210, 50,37], 'n01728920_1558': [200, 170,75], 'n01728920_3094': [180, 170,75], 'n01728920_18940': [610, 220,75],
+    'n01770081_20238': [230, 200,75], 'n02165105_1003': [200, 170,75], 'n02165456_4723': [200, 200,75], 'n02172182_10420': [210, 100,75],
+    'n02085936_25190': [190, 100,75], 'n02086646_5634': [290, 200,75], 'n02087394_12262': [300, 100,75], 'n02089867_1499': [125, 120,37],
+    'n02123045_909': [225, 150,75], 'n02123394_4665': [160, 210,75], 'n02124075_8519': [240, 200,75], 'n04265275_11650': [130, 210,75],
+    'n02132136_1163': [200, 370,110], 'n02132136_1914': [270, 120,75], 'n02133161_5643': [200, 150,75], 'n02133161_15593': [230, 170,75],
+    'n02395406_20997': [410, 170,37], 'n02395406_27800': [225, 100,75], 'n02395406_34373': [270, 200,75], 'n02395406_126722': [280, 240,75],
+    'n02403003_5033': [300, 180,75], 'n02403003_5517': [260, 230,75], 'n02403003_8205': [100, 100,37], 'n02403003_13048': [280, 210,37],
+    'n02480495_18162': [320, 160,75], 'n02481823_750': [260, 150,75], 'n02486261_5082': [150, 70,37], 'n02492035_2600': [420, 160,75],
+    'n02667093_4473': [200, 80,75], 'n02669723_7201': [300, 150,200], 'n02787622_18405': [200, 80,75], 'n02797295_12668': [190, 185,37],
+    'n02894605_21552': [120, 220,75], 'n02894605_26560': [300, 150,75], 'n02894605_49114': [300, 240,75], 'n03443371_12508': [120, 150,75],
+    'n03743016_6906': [340, 85,75], 'n03743016_7422': [410, 300,75], 'n03743016_14906': [120, 180,75], 'n03743016_17788': [240, 180,75],
+    'n03899768_131602': [150, 200,75], 'n04204347_2608': [200, 250,75], 'n04522168_34974': [320, 200,75], 'no03733281_18757': [750, 800,200],
+    'blueNone': [100, 100, 75]
+}
+
+//Centers from center_radius_dict before change
+//These centers were changed because of not lining up with the current implementation (potentially becase of scaling)
+//Keeping these in case a new implementation is necessary
+var old_centers = {
+    'n02403003_5517': [230, 200,75], 'n02797295_12668': [85, 125,37], 'n02403003_13048': [110, 80,37], 'n01685808_5907': [200, 200,75], 
+    'n02403003_5033': [250, 120,75], 'n02492035_2600': [350, 120,75], 'n01728920_18940': [450, 170,75], 'n02123394_4665': [120, 250,75], 
+    'n02536864_33865': [280, 120,75], 'n01682714_3665': [150, 170,75], 'n02480495_18162': [280, 150,75], 'n02132136_1914': [210, 100,75], 
+    'n02669723_7201': [900, 400,200], 'n02894605_49114': [250, 200,75], 'n01531178_13382': [110, 300,75], 'n02514041_3032': [200, 150,75], 
+    'n01582220_6409': [220, 75,75], 'n02395406_34373': [230, 170,75], 'n02395406_20997': [175, 70,37], 'n04522168_34974': [225, 120,75],
+    'n02133161_15593': [200, 150,75], 'n02894605_21552': [100, 200,75]
+}
+
+//Order in which images ar being seen. The img 'blueNone' is blank and is used as a buffer between trials that allows the current implementation to work
+//The first 'blueNone' is the onyl one seen and can be used as an indicator of understanding of the task by the subject
+img_order = ['n02480495_12334', 'n04204347_2608', 'n01443537_18160', 'n02395406_27800', 'n02089867_1499', 'n02132136_1163', 
+            'n01770081_20238', 'n01728920_3094', 'n02481823_750', 'n02667093_4473', 'n01687978_11261', 'n02086646_5634', 
+            'n02395406_126722', 'n01682714_5209', 'n02787622_18405', 'n01728572_8381', 
+            'no03733281_18757', 'n02124075_8519', 'n02403003_8205', 'n02536864_33865', 'n01537544_23365', 'n02172182_10420', 
+            'n02403003_5517', 'n02486261_5082', 'n02133161_5643', 'n02123045_909', 'n01558993_3523',  
+            'blueNone', 'n02395406_34373', 'n02797295_12668', 'n04265275_11650', 'n03899768_131602', 'n02403003_13048', 
+            'n01685808_5907', 'n02403003_5033', 'n02087394_12262', 'n02492035_2600', 'n01728920_18940', 'n02123394_4665', 
+            'n02395406_20997', 'n01682714_3665', 'n02480495_18162', 'n02132136_1914', 'n04522168_34974', 'n01440764_12435', 
+            'n02669723_7201', 'n02165456_4723', 'n01728920_1558', 'n02133161_15593',
+            'n01531178_13382', 'n02165105_1003', 'n02085936_25190', 'n02514041_3032', 'n01582220_6409']
+
+//Shifted some of these elements so there would be two from each category for focal and base task
+// orig_img_order = ['blueNone', 'n04204347_2608', 'n01443537_18160', 'n03743016_14906', 'n02395406_27800', 'n02089867_1499', 'n02132136_1163', 
+//             'n01770081_20238', 'n01728920_3094', 'n02481823_750', 'n02667093_4473', 'n01687978_11261', 'n02086646_5634', 
+//             'n02395406_126722', 'n01682714_5209', 'n03743016_7422', 'n03443371_12508', 'n02787622_18405', 'n01728572_8381', 
+//             'n04522168_34974', 'n02124075_8519', 'n02403003_8205', 'n02395406_20997', 'no03733281_18757', 'n02172182_10420', 
+//             'n03743016_17788', 'n02395406_34373', 'n02486261_5082', 'n02133161_5643', 'n02123045_909', 'n02133161_15593',  
+//             'blueNone', 'n02403003_5517', 'n02894605_26560', 'n02797295_12668', 'n04265275_11650', 'n03899768_131602', 'n02403003_13048', 
+//             'n01685808_5907', 'n02403003_5033', 'n02087394_12262', 'n02492035_2600', 'n01728920_18940', 'n02123394_4665', 
+//             'n02536864_33865', 'n01682714_3665', 'n02480495_18162', 'n02132136_1914', 'n01537544_23365', 'n01440764_12435', 
+//             'n02669723_7201', 'n02165456_4723', 'n03743016_6906', 'n01728920_1558', 'n01558993_3523', 'n02894605_49114',
+//             'n01531178_13382', 'n02165105_1003', 'n02894605_21552', 'n02085936_25190', 'n02514041_3032', 'n01582220_6409']
+
+//Order in which categories were presented in original implementation
+// category_order = ['Plant', 'Fish', 'Rock', 'Pig', 'Dog', 'Bear', 
+//                     'Insect', 'Snake', 'Monkey', 'Person', 'Lizard', 'Dog', 
+//                     'Pig', 'Lizard', 'Rock', 'Water', 'Person', 'Snake', 
+//                     'Plant', 'Cat', 'Cow', 'Pig', 'Plant', 'Insect', 
+//                     'Rock', 'Pig', 'Monkey', 'Bear', 'Cat', 'Bear', 
+//                     'Cow', 'Water', 'Person', 'Cat', 'Plant', 'Cow', 
+//                     'Lizard', 'Cow', 'Dog', 'Monkey', 'Snake', 'Cat', 
+//                     'Fish', 'Lizard', 'Monkey', 'Bear', 'Bird', 'Fish', 
+//                     'Person', 'Insect', 'Rock', 'Snake', 'Bird', 'Water', 
+//                     'Bird', 'Insect', 'Water', 'Dog', 'Fish', 'Bird']
+
+
+</script>
+
+</html>

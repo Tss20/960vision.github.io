@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Advanced</title>
+    <meta http-equiv="pragma" content="no-cache">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <link href="https://unpkg.com/jspsych@7.3.1/css/jspsych.css" rel="stylesheet" type="text/css" />
+    <script src="https://unpkg.com/jspsych@7.3.1"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.2"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.2"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.2"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.2"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-image-button-response@1.1.2"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-categorize-image@1.1.2"></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'></script>
+    <script src="util.js"></script>
+</head>
+
+<body></body>
+
+<script>
+    // Initialize the jsPsych object (possibly with arguments: https://www.jspsych.org/7.3/reference/jspsych/)
+    var jsPsych = initJsPsych({
+        on_finish: function () {
+            jsPsych.data.displayData(); // Print data to screen at the end
+            write_data_to_server(); // This function is defined in `util.js`
+        },
+        show_progress_bar: true,
+    });
+
+    // The `write_data_to_server` function requires two global variables to be defined:
+    // `url_write_data_php` (web location of the write_data.php script) and `output_filename`
+    var url_experiment_dir = 'https://msaddler.scripts.mit.edu/jspsych_tutorial_960/';
+    var url_write_data_php = url_experiment_dir + 'write_data.php';
+    var subject_id = jsPsych.data.getURLVariable('subject_id');
+    console.log(`subject_id from URL: ${subject_id}`);
+    if (!subject_id) {
+        subject_id = jsPsych.randomization.randomID(10);
+        console.log(`subject_id randomly assigned: ${subject_id}`);
+    }
+    var output_filename = `data/experiment3_${subject_id}.json`;
+    console.log(`Data will be saved to: ${url_experiment_dir + output_filename}`);
+
+    // Initialize a timeline (just an empty array)
+    var timeline = [];
+
+    // A preload object will ensure images are loaded from the server before the trial they are used
+    var preload = {
+        type: jsPsychPreload,
+        auto_preload: true,
+    };
+    timeline.push(preload);
+
+    var category_dict = {
+        'Fish': ['n01440764_12435', 'n01443537_18160', 'n02514041_3032', 'n02536864_33865',],
+        'Bird': ['n01531178_13382', 'n01537544_23365', 'n01558993_3523', 'n01582220_6409'],
+        'Lizard': ['n01682714_3665', 'n01682714_5209', 'n01685808_5907', 'n01687978_11261'],
+        'Snake': ['n01728572_8381', 'n01728920_1558', 'n01728920_3094', 'n01728920_18940'],
+        'Insect': ['n01770081_20238', 'n02165105_1003', 'n02165456_4723', 'n02172182_10420'], 
+        'Dog': ['n02085936_25190', 'n02086646_5634', 'n02087394_12262', 'n02089867_1499'],
+        'Cat': ['n02123045_909', 'n02123394_4665', 'n02124075_8519', 'n04265275_11650'],
+        'Bear': ['n02132136_1163', 'n02132136_1914', 'n02133161_5643', 'n02133161_15593'],
+        'Pig': ['n02395406_20997', 'n02395406_27800', 'n02395406_34373', 'n02395406_126722'],
+        'Cow': ['n02403003_5033', 'n02403003_5517', 'n02403003_8205', 'n02403003_13048'],
+        'Monkey': ['n02480495_18162', 'n02481823_750', 'n02486261_5082', 'n02492035_2600'],
+        'Person': ['n02667093_4473', 'n02669723_7201', 'n02787622_18405', 'n02797295_12668'],
+        'Water': ['n02894605_21552', 'n02894605_26560', 'n02894605_49114', 'n03443371_12508'],
+        'Rock': ['n03743016_6906', 'n03743016_7422', 'n03743016_14906', 'n03743016_17788'],
+        'Plant': ['n03899768_131602', 'n04204347_2608', 'n04522168_34974', 'no03733281_18757'],
+    }
+
+    var picture_dict = {
+        'n01440764_12435': 'Fish', 'n01443537_18160': 'Fish', 'n02514041_3032': 'Fish', 'n02536864_33865': 'Fish',
+        'n01531178_13382': 'Bird', 'n01537544_23365': 'Bird', 'n01558993_3523': 'Bird', 'n01582220_6409': 'Bird',
+        'n01682714_3665': 'Lizard', 'n01682714_5209': 'Lizard', 'n01685808_5907': 'Lizard', 'n01687978_11261': 'Lizard',
+        'n01728572_8381': 'Snake', 'n01728920_1558': 'Snake', 'n01728920_3094': 'Snake', 'n01728920_18940': 'Snake',
+        'n01770081_20238': 'Insect', 'n02165105_1003': 'Insect', 'n02165456_4723': 'Insect', 'n02172182_10420': 'Insect',
+        'n02085936_25190': 'Dog', 'n02086646_5634': 'Dog', 'n02087394_12262': 'Dog', 'n02089867_1499': 'Dog',
+        'n02123045_909': 'Cat', 'n02123394_4665': 'Cat', 'n02124075_8519': 'Cat', 'n04265275_11650': 'Cat',
+        'n02132136_1163': 'Bear', 'n02132136_1914': 'Bear', 'n02133161_5643': 'Bear', 'n02133161_15593': 'Bear',
+        'n02395406_20997': 'Pig', 'n02395406_27800': 'Pig', 'n02395406_34373': 'Pig', 'n02395406_126722': 'Pig',
+        'n02403003_5033': 'Cow', 'n02403003_5517': 'Cow', 'n02403003_8205': 'Cow', 'n02403003_13048': 'Cow',
+        'n02480495_18162': 'Monkey', 'n02481823_750': 'Monkey', 'n02486261_5082': 'Monkey', 'n02492035_2600': 'Monkey',
+        'n02667093_4473': 'Person', 'n02669723_7201': 'Person', 'n02787622_18405': 'Person', 'n02797295_12668': 'Person',
+        'n02894605_21552': 'Water', 'n02894605_26560': 'Water', 'n02894605_49114': 'Water', 'n03443371_12508': 'Water',
+        'n03743016_6906': 'Rock', 'n03743016_7422': 'Rock', 'n03743016_14906': 'Rock', 'n03743016_17788': 'Rock',
+        'n03899768_131602': 'Plant', 'n04204347_2608': 'Plant', 'n04522168_34974': 'Plant', 'no03733281_18757': 'Plant',
+    }
+
+    // Always good to put experiment instructions /  disclaimers on the first page
+    var first_page = {
+        type: jsPsychHtmlButtonResponse, // This trial will use the "html-button-response" plugin
+        stimulus: [
+            '<h2>Simple image classification experiment</h2>' +
+            '<p>In this experiment, you will briefly see images.</p>' +
+            '<p>Your task is to report the category of what you saw.</p>'
+        ],
+        choices: ['Begin experiment'],
+    };
+    timeline.push(first_page);
+
+    // Define some variables that will be shared across all image trials
+    var prompt_str = 'What did you see?';
+    var choices = ['Fish', 'Bird', 'Lizard', 'Snake', 'Insect', 'Dog', 'Cat', 'Bear', 'Pig', 'Cow', 'Monkey', 'Person', 'Water', 'Rock', 'Plant', 'None'];
+    var maintain_aspect_ratio = true;
+    var stimulus_width = 300; // Image width in pixels (null will use native width)
+    var stimulus_duration = 500; // Image presentation duration in ms
+
+    // Programatically prepare a list of variables that will vary by trials
+    var timeline_variables_for_trials = [];
+    var factors = {
+        condition: Object.keys(category_dict), // 3 conditions numbered 0, 1, 2
+        image_num: [category_dict['Fish'], category_dict['Bird'], category_dict['Lizard'], category_dict['Snake'], category_dict['Insect'],
+                    category_dict['Dog'], category_dict['Cat'], category_dict['Bear'], category_dict['Pig'], category_dict['Cow'],
+                    category_dict['Monkey'], category_dict['Person'], category_dict['Water'], category_dict['Rock'], category_dict['Plant']],
+        // range(50, 53, 1), // 3 images numbered 50 to 52
+    };
+    var full_design = jsPsych.randomization.factorial(factors, 1);
+    var unique_stimulus_duration = [500];
+    var list_stimulus_duration = jsPsych.randomization.repeat(
+        unique_stimulus_duration,
+        full_design.length / unique_stimulus_duration.length);
+    for (var itr_trial = 0; itr_trial < full_design.length; itr_trial += 1) {
+        var rand_one = Math.floor(Math.random() * (3 + 1) + 0);
+        var condition = full_design[itr_trial].condition;
+        var image_num = full_design[itr_trial].image_num[rand_one];
+        // console.log("IMG", image_num, "RAND", rand_one)
+
+        timeline_variables_for_trials.push({
+            
+            image_path: `Imgs/${image_num}.jpg`,
+            stimulus_duration: list_stimulus_duration[itr_trial],
+            key_answer: `${picture_dict[image_num]}`,
+        });
+    }
+    console.log(JSON.stringify(timeline_variables_for_trials));
+
+    // Prepare timeline for the individual trials
+    var timeline_for_trials = [
+        {
+            type: jsPsychImageButtonResponse, // This trial will use the "image-button-response" plugin
+            stimulus: jsPsych.timelineVariable('image_path'),
+            maintain_aspect_ratio: maintain_aspect_ratio,
+            // stimulus_width: stimulus_width,
+            stimulus_duration: jsPsych.timelineVariable('stimulus_duration'),
+            prompt: prompt_str,
+            choices: choices,
+            data: {
+                stimulus_duration: jsPsych.timelineVariable('stimulus_duration'),
+            },
+        },
+        // {
+        //     type: jsPsychCategorizeImage, // This trial will use the "categorize-image" plugin
+        //     stimulus: jsPsych.timelineVariable('image_path'),
+        //     maintain_aspect_ratio: maintain_aspect_ratio,
+        //     stimulus_width: stimulus_width,
+        //     stimulus_duration: jsPsych.timelineVariable('stimulus_duration'),
+        //     prompt: [
+        //         '<h3>0 = No mask</h3>' +
+        //         '<h3>1 = Mask worn correctly</h3>' +
+        //         '<h3>2 = Mask worn incorrectly</h3>'
+        //     ],
+        //     choices: ['0', '1', '2'],
+        //     show_stim_with_feedback: false,
+        //     feedback_duration: 1000,
+        //     correct_text: 'Correct',
+        //     incorrect_text: 'The correct response was %ANS%',
+        //     text_answer: jsPsych.timelineVariable('key_answer'),
+        //     key_answer: jsPsych.timelineVariable('key_answer'),
+        //     data: {
+        //         key_answer: jsPsych.timelineVariable('key_answer'),
+        //         stimulus_duration: jsPsych.timelineVariable('stimulus_duration'),
+        //     },
+        // },
+    ];
+
+    // Add the trials to the main timeline
+    var trials = {
+        timeline: timeline_for_trials,
+        timeline_variables: timeline_variables_for_trials,
+        randomize_order: true,
+    };
+    timeline.push(trials);
+
+    var last_page = {
+        type: jsPsychHtmlButtonResponse, // This trial will use the "html-button-response" plugin
+        stimulus: [
+            '<h2>Press the button below to end experiment.</h2>' +
+            '<p>Thank you for participating!</p>'
+        ],
+        choices: ['End experiment'],
+    };
+    timeline.push(last_page);
+
+    // Run the timeline
+    jsPsych.run(timeline);
+</script>
+
+</html>
