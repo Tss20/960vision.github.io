@@ -1,0 +1,6 @@
+ImageTag: n01685808_5907
+Category: lizard
+FocalPoint: (200, 200)
+Radius: 75
+OrigImage: /content/Imgs/n01685808_5907.jpg
+NewImage: ./ImgsB/n01685808_5907_1.jpg

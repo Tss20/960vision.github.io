@@ -1,0 +1,6 @@
+ImageTag: n01728920_1558
+Category: snake
+FocalPoint: (200, 170)
+Radius: 75
+OrigImage: /content/Imgs/n01728920_1558.jpg
+NewImage: ./ImgsB/n01728920_1558_1.jpg

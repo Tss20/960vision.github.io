@@ -1,0 +1,6 @@
+ImageTag: n01537544_23365
+Category: bird
+FocalPoint: (230, 130)
+Radius: 75
+OrigImage: /content/Imgs/n01537544_23365.jpg
+NewImage: ./ImgsB/n01537544_23365_1.jpg

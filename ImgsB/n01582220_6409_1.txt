@@ -1,0 +1,6 @@
+ImageTag: n01582220_6409
+Category: bird
+FocalPoint: (220, 75)
+Radius: 75
+OrigImage: /content/Imgs/n01582220_6409.jpg
+NewImage: ./ImgsB/n01582220_6409_1.jpg

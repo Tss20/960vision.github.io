@@ -1,0 +1,6 @@
+ImageTag: n01728572_8381
+Category: snake
+FocalPoint: (210, 50)
+Radius: 37
+OrigImage: /content/Imgs/n01728572_8381.jpg
+NewImage: ./ImgsB/n01728572_8381_1.jpg

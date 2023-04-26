@@ -1,0 +1,6 @@
+ImageTag: n01440764_12435
+Category: fish
+FocalPoint: (180, 250)
+Radius: 75
+OrigImage: /content/Imgs/n01440764_12435.jpg
+NewImage: ./ImgsB/n01440764_12435_1.jpg

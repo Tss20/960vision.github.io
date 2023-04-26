@@ -1,0 +1,6 @@
+ImageTag: n01443537_18160
+Category: fish
+FocalPoint: (250, 100)
+Radius: 75
+OrigImage: /content/Imgs/n01443537_18160.jpg
+NewImage: ./ImgsB/n01443537_18160_1.jpg

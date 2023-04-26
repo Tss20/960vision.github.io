@@ -1,0 +1,6 @@
+ImageTag: n01682714_3665
+Category: lizard
+FocalPoint: (150, 170)
+Radius: 75
+OrigImage: /content/Imgs/n01682714_3665.jpg
+NewImage: ./ImgsB/n01682714_3665_1.jpg
