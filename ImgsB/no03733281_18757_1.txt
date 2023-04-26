@@ -1,0 +1,6 @@
+ImageTag: no03733281_18757
+Category: plant
+FocalPoint: (750, 800)
+Radius: 200
+OrigImage: /content/Imgs/no03733281_18757.jpg
+NewImage: ./ImgsB/no03733281_18757_1.jpg

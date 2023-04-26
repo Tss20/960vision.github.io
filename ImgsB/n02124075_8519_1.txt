@@ -1,0 +1,6 @@
+ImageTag: n02124075_8519
+Category: cat
+FocalPoint: (240, 200)
+Radius: 75
+OrigImage: /content/Imgs/n02124075_8519.jpg
+NewImage: ./ImgsB/n02124075_8519_1.jpg

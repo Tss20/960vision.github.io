@@ -1,0 +1,6 @@
+ImageTag: n02172182_10420
+Category: insect
+FocalPoint: (210, 100)
+Radius: 75
+OrigImage: /content/Imgs/n02172182_10420.jpg
+NewImage: ./ImgsB/n02172182_10420_1.jpg

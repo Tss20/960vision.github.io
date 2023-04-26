@@ -1,0 +1,6 @@
+ImageTag: n02492035_2600
+Category: monkey
+FocalPoint: (350, 120)
+Radius: 75
+OrigImage: /content/Imgs/n02492035_2600.jpg
+NewImage: ./ImgsB/n02492035_2600_1.jpg

@@ -1,0 +1,6 @@
+ImageTag: n02480495_18162
+Category: monkey
+FocalPoint: (280, 150)
+Radius: 75
+OrigImage: /content/Imgs/n02480495_18162.jpg
+NewImage: ./ImgsB/n02480495_18162_1.jpg

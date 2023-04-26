@@ -1,0 +1,6 @@
+ImageTag: n02481823_750
+Category: monkey
+FocalPoint: (260, 150)
+Radius: 75
+OrigImage: /content/Imgs/n02481823_750.jpg
+NewImage: ./ImgsB/n02481823_750_1.jpg

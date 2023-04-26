@@ -1,0 +1,6 @@
+ImageTag: n04522168_34974
+Category: plant
+FocalPoint: (225, 120)
+Radius: 75
+OrigImage: /content/Imgs/n04522168_34974.jpg
+NewImage: ./ImgsB/n04522168_34974_1.jpg

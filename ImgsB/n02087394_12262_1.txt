@@ -1,0 +1,6 @@
+ImageTag: n02087394_12262
+Category: dog
+FocalPoint: (300, 100)
+Radius: 75
+OrigImage: /content/Imgs/n02087394_12262.jpg
+NewImage: ./ImgsB/n02087394_12262_1.jpg

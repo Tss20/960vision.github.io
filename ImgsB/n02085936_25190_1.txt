@@ -1,0 +1,6 @@
+ImageTag: n02085936_25190
+Category: dog
+FocalPoint: (190, 100)
+Radius: 75
+OrigImage: /content/Imgs/n02085936_25190.jpg
+NewImage: ./ImgsB/n02085936_25190_1.jpg

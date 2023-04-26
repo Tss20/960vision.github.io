@@ -1,0 +1,6 @@
+ImageTag: n03443371_12508
+Category: water
+FocalPoint: (120, 150)
+Radius: 75
+OrigImage: /content/Imgs/n03443371_12508.jpg
+NewImage: ./ImgsB/n03443371_12508_1.jpg

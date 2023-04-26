@@ -1,0 +1,6 @@
+ImageTag: n02123394_4665
+Category: cat
+FocalPoint: (120, 250)
+Radius: 75
+OrigImage: /content/Imgs/n02123394_4665.jpg
+NewImage: ./ImgsB/n02123394_4665_1.jpg

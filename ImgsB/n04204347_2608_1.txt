@@ -1,0 +1,6 @@
+ImageTag: n04204347_2608
+Category: plant
+FocalPoint: (200, 250)
+Radius: 75
+OrigImage: /content/Imgs/n04204347_2608.jpg
+NewImage: ./ImgsB/n04204347_2608_1.jpg

@@ -1,0 +1,6 @@
+ImageTag: n02667093_4473
+Category: person
+FocalPoint: (200, 80)
+Radius: 75
+OrigImage: /content/Imgs/n02667093_4473.jpg
+NewImage: ./ImgsB/n02667093_4473_1.jpg

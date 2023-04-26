@@ -1,0 +1,6 @@
+ImageTag: n02123045_909
+Category: cat
+FocalPoint: (225, 150)
+Radius: 75
+OrigImage: /content/Imgs/n02123045_909.jpg
+NewImage: ./ImgsB/n02123045_909_1.jpg

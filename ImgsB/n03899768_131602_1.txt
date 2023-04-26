@@ -1,0 +1,6 @@
+ImageTag: n03899768_131602
+Category: plant
+FocalPoint: (150, 200)
+Radius: 75
+OrigImage: /content/Imgs/n03899768_131602.jpg
+NewImage: ./ImgsB/n03899768_131602_1.jpg

@@ -1,0 +1,6 @@
+ImageTag: n02395406_126722
+Category: pig
+FocalPoint: (280, 240)
+Radius: 75
+OrigImage: /content/Imgs/n02395406_126722.jpg
+NewImage: ./ImgsB/n02395406_126722_1.jpg

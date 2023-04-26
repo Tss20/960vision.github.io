@@ -1,0 +1,6 @@
+ImageTag: n02787622_18405
+Category: person
+FocalPoint: (200, 80)
+Radius: 75
+OrigImage: /content/Imgs/n02787622_18405.jpg
+NewImage: ./ImgsB/n02787622_18405_1.jpg

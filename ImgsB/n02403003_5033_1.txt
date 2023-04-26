@@ -1,0 +1,6 @@
+ImageTag: n02403003_5033
+Category: cow
+FocalPoint: (250, 120)
+Radius: 75
+OrigImage: /content/Imgs/n02403003_5033.jpg
+NewImage: ./ImgsB/n02403003_5033_1.jpg

@@ -1,0 +1,6 @@
+ImageTag: n01770081_20238
+Category: spider
+FocalPoint: (230, 200)
+Radius: 75
+OrigImage: /content/Imgs/n01770081_20238.jpg
+NewImage: ./ImgsB/n01770081_20238_1.jpg

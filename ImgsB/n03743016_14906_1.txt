@@ -1,0 +1,6 @@
+ImageTag: n03743016_14906
+Category: rock
+FocalPoint: (120, 180)
+Radius: 75
+OrigImage: /content/Imgs/n03743016_14906.jpg
+NewImage: ./ImgsB/n03743016_14906_1.jpg

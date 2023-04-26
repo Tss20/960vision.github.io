@@ -1,0 +1,6 @@
+ImageTag: n02669723_7201
+Category: person
+FocalPoint: (900, 400)
+Radius: 200
+OrigImage: /content/Imgs/n02669723_7201.jpg
+NewImage: ./ImgsB/n02669723_7201_1.jpg

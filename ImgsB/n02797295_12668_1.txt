@@ -1,0 +1,6 @@
+ImageTag: n02797295_12668
+Category: person
+FocalPoint: (85, 125)
+Radius: 37
+OrigImage: /content/Imgs/n02797295_12668.jpg
+NewImage: ./ImgsB/n02797295_12668_1.jpg

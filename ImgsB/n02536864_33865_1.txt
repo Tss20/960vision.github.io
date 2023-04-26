@@ -1,0 +1,6 @@
+ImageTag: n02536864_33865
+Category: fish
+FocalPoint: (280, 120)
+Radius: 75
+OrigImage: /content/Imgs/n02536864_33865.jpg
+NewImage: ./ImgsB/n02536864_33865_1.jpg

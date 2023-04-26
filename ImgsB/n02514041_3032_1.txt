@@ -1,0 +1,6 @@
+ImageTag: n02514041_3032
+Category: fish
+FocalPoint: (200, 150)
+Radius: 75
+OrigImage: /content/Imgs/n02514041_3032.jpg
+NewImage: ./ImgsB/n02514041_3032_1.jpg

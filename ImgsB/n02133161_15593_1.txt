@@ -1,0 +1,6 @@
+ImageTag: n02133161_15593
+Category: bear
+FocalPoint: (200, 150)
+Radius: 75
+OrigImage: /content/Imgs/n02133161_15593.jpg
+NewImage: ./ImgsB/n02133161_15593_1.jpg

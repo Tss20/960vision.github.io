@@ -1,0 +1,6 @@
+ImageTag: n02486261_5082
+Category: monkey
+FocalPoint: (150, 70)
+Radius: 37
+OrigImage: /content/Imgs/n02486261_5082.jpg
+NewImage: ./ImgsB/n02486261_5082_1.jpg

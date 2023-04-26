@@ -1,0 +1,6 @@
+ImageTag: n02132136_1914
+Category: bear
+FocalPoint: (210, 100)
+Radius: 75
+OrigImage: /content/Imgs/n02132136_1914.jpg
+NewImage: ./ImgsB/n02132136_1914_1.jpg

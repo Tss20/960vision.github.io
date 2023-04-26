@@ -1,0 +1,6 @@
+ImageTag: n02894605_21552
+Category: water
+FocalPoint: (100, 200)
+Radius: 75
+OrigImage: /content/Imgs/n02894605_21552.jpg
+NewImage: ./ImgsB/n02894605_21552_1.jpg

@@ -1,0 +1,6 @@
+ImageTag: n02165105_1003
+Category: insect
+FocalPoint: (200, 170)
+Radius: 75
+OrigImage: /content/Imgs/n02165105_1003.jpg
+NewImage: ./ImgsB/n02165105_1003_1.jpg
